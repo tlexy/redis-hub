@@ -55,7 +55,7 @@ int main()
 	RedisQueue::getInstance()->init("192.168.239.130", 7000);
 	RedisQueue::getInstance()->startAsync();
 
-	redis_svr.post("hset ms:s2 room1 http://abcd1");
+	/*redis_svr.post("hset ms:s2 room1 http://abcd1");
 	redis_svr.post("hset ms:s2 room2 http://abcd2");
 	redis_svr.post("hset ms:s2 room3 http://abcd3");
 	redis_svr.post("hset ms:s2 room4 http://abcd4");
@@ -69,7 +69,26 @@ int main()
 
 	redis_svr.get("hset ms:s2 room11 http://alibaba_room11");
 	redis_svr.get("hset ms:s2 room12 http://alibaba_room12");
-	redis_svr.get("hset ms:s3 room13 http://alibaba_room13");
+	redis_svr.get("hset ms:s3 room13 http://alibaba_room13");*/
+
+	RedisHome* redis = redis_svr.get("hget ms:s2 room1");
+	std::cout << redis->getString() << std::endl;
+
+	redis = redis_svr.get("hget ms:s2 room1");
+	std::cout << redis->getString() << std::endl;
+
+	redis = redis_svr.get("hget ms:s2 room2");
+	std::cout << redis->getString() << std::endl;
+
+	redis = redis_svr.get("hget ms:s3 room4");
+	//This will get nil.
+	std::cout << redis->getString() << std::endl;
+
+	redis = redis_svr.get("hget ms:s2 room1");
+	std::cout << redis->getString() << std::endl;
+
+	redis = redis_svr.get("hget ms:s2 room11");
+	std::cout << redis->getString() << std::endl;
 
 	std::cin.get();
 
