@@ -6,6 +6,8 @@
 #include "redishome.h"
 #include "util.h"
 #include "rediscluster.h"
+#include "threadqueue.hpp"
+#include "redisqueue.h"
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -46,7 +48,35 @@ void test_getContext(const char* str)
 	int a = 1;
 }
 
+#define redis_svr (*RedisQueue::getInstance())
+
 int main()
+{
+	RedisQueue::getInstance()->init("192.168.239.130", 7000);
+	RedisQueue::getInstance()->startAsync();
+
+	redis_svr.post("hset ms:s2 room1 http://abcd1");
+	redis_svr.post("hset ms:s2 room2 http://abcd2");
+	redis_svr.post("hset ms:s2 room3 http://abcd3");
+	redis_svr.post("hset ms:s2 room4 http://abcd4");
+	redis_svr.post("hset ms:s2 room5 http://abcd5");
+
+	redis_svr.post("hset ms:s3 room1 http://abcd100");
+	redis_svr.post("hset ms:s3 room2 http://abcd200");
+	redis_svr.post("hset ms:s4 room3 http://abcd300");
+	redis_svr.post("hset ms:s4 room4 http://abcd400");
+	redis_svr.post("hset ms:s5 room5 http://abcd500");
+
+	redis_svr.get("hset ms:s2 room11 http://alibaba_room11");
+	redis_svr.get("hset ms:s2 room12 http://alibaba_room12");
+	redis_svr.get("hset ms:s3 room13 http://alibaba_room13");
+
+	std::cin.get();
+
+	return 0;
+}
+
+int main3()
 {
 	RedisCluster cluster;
 	cluster.connect("192.168.239.130", 7000);

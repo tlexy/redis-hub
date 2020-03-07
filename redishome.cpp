@@ -186,7 +186,7 @@ std::string RedisHome::getString()
 
 bool RedisHome::isError()
 {
-	return _ctx == NULL || _ctx->err;
+	return _ctx == NULL || _ctx->err || _last_type == REDIS_REPLY_ERROR;
 }
 
 long long RedisHome::getInteger()

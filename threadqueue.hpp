@@ -1,0 +1,131 @@
+﻿#ifndef THREAD_QUEUE__H
+#define THREAD_QUEUE__H
+
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+
+
+template<typename T>
+class ThreadQueue
+{
+public:
+	ThreadQueue(int max = 100000)
+		:_isNotEmpty(false),
+		_isFull(false),
+		_max(max)
+	{
+		if (_max < 0)
+		{
+			_max = 1;
+		}
+	}
+
+	//void fpush_back(const T& val)
+	//{
+	//	//这个操作会立刻返回
+	//}
+
+	template<class _Rep,
+		class _Period>
+	bool push_back_t(const T& val, const std::chrono::duration<_Rep, _Period>& _Rel_time)
+	{
+		std::unique_lock<std::mutex> lock(_mutex);
+		_cv.wait_for(lock, _Rel_time, [&] {return !_isFull; });
+		if (_isFull)
+		{
+			return false;
+		}
+		_queue.push(val);
+		if (_queue.size() >= _max)
+		{
+			_isFull = true;
+		}
+		_isNotEmpty = true;
+		lock.unlock();
+		_cv.notify_all();
+		return true;
+	}
+
+	void push_back(const T& val)
+	{
+		std::unique_lock<std::mutex> lock(_mutex);
+		_cv.wait(lock, [&] {return !_isFull; });
+		_queue.push(val);
+		if (_queue.size() >= _max)
+		{
+			_isFull = true;
+		}
+		_isNotEmpty = true;
+		lock.unlock();
+		_cv.notify_all();
+	}
+	void push_back(const T&& val)
+	{
+		push_back(std::move(val));
+	}
+	/*void push_front(const T& val)
+	{}
+	void push_front(const T&& val)
+	{}
+	T pop_back()
+	{}*/
+	template<class _Rep,
+		class _Period>
+	T pop(bool& flag, const std::chrono::duration<_Rep, _Period>& sleep_time)
+	{
+		std::unique_lock<std::mutex> lock(_mutex);
+		_cv.wait_for(lock, sleep_time, [&] {return _isNotEmpty; });
+		if (!_isNotEmpty)
+		{
+			flag = false;
+			T t;
+			return t;
+		}
+		else
+		{
+			flag = true;
+		}
+		T val = _queue.front();
+		_queue.pop();
+		if(_queue.size() == 0)
+		{
+			_isNotEmpty = false;
+		}
+		if (_queue.size() >= _max)
+		{
+			_isFull = true;
+		}
+
+		lock.unlock();
+		if (_queue.size() < _max)
+		{
+			_cv.notify_all();
+		}
+		return val;
+	}
+
+	void clear()
+	{
+		std::unique_lock<std::mutex> lock(_mutex);
+		std::lock(lock);
+
+		while (!_queue.empty())
+		{
+			_queue.pop();
+		}
+		_isFull = false;
+		_isNotEmpty = false;
+	}
+
+private:
+	std::queue<T> _queue;
+	std::condition_variable _cv;
+	std::mutex _mutex;
+	int _max;
+	bool _isFull;
+	bool _isNotEmpty;
+};
+
+#endif

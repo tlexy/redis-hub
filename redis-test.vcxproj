@@ -117,11 +117,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="rediscluster.cpp" />
     <ClCompile Include="redishome.cpp" />
+    <ClCompile Include="redisqueue.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rediscluster.h" />
     <ClInclude Include="redishome.h" />
+    <ClInclude Include="redisqueue.h" />
+    <ClInclude Include="threadqueue.hpp" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

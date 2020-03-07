@@ -7,9 +7,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="redishome.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -17,6 +14,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="redisqueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -28,6 +31,12 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="util.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="redisqueue.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="threadqueue.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
