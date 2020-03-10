@@ -108,8 +108,9 @@ public:
 
 	void clear()
 	{
-		std::unique_lock<std::mutex> lock(_mutex);
-		std::lock(lock);
+		//std::unique_lock<std::mutex> lock(_mutex);
+		//std::lock(lock);
+		std::lock_guard<std::mutex> lock_g(_mutex);
 
 		while (!_queue.empty())
 		{

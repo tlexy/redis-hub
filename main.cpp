@@ -50,7 +50,7 @@ void test_getContext(const char* str)
 
 #define redis_svr (*RedisQueue::getInstance())
 
-int main()
+int main4()
 {
 	RedisQueue::getInstance()->init("192.168.239.130", 7000);
 	RedisQueue::getInstance()->startAsync();
@@ -151,6 +151,7 @@ int main2()
 	std::cin.get();
 	return 0;
 }
+
 
 int main1()
 {
