@@ -2,6 +2,8 @@
 #include <stdio.h>
 
 RedisHome::RedisHome()
+	:_ctx(NULL),
+	_repl(NULL)
 {}
 
 RedisHome::~RedisHome()
