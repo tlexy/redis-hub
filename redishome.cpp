@@ -19,7 +19,6 @@ redisContext* RedisHome::connect(const char* ipstr, int port, struct timeval tva
 	_ipstr.append(ipstr);
 	_port = port;
 	_tval = tval;
-
 	printf("connect to server: %s:%d\n", ipstr, port);
 	_ctx = redisConnectWithTimeout(ipstr, port, tval);
 	if (_ctx == NULL || _ctx->err)
@@ -201,6 +200,7 @@ void RedisHome::clearAll()
 	if (_repl)
 	{
 		freeReplyObject(_repl);
+		_repl = NULL;
 	}
 	_sstate = snull;
 	_str_pos = -1;
