@@ -4,7 +4,7 @@
 #include <win32.h>
 #include <stdarg.h>
 #include "redishome.h"
-#include "util.h"
+#include "redisutil.h"
 #include "rediscluster.h"
 #include "threadqueue.hpp"
 #include "redisqueue.h"
@@ -23,12 +23,12 @@ void test_getKey()
 	char* command4 = "HGET ada ms:s1";
 	char* command5 = "HSET rrr ms:s1 https://ttta1";
 	char* command6 = "HGET tyu ms:s1 ";
-	std::string key1 = Util::getKey(command1, strlen(command1));
-	std::string key2 = Util::getKey(command2, strlen(command2));
-	std::string key3 = Util::getKey(command3, strlen(command3));
-	std::string key4 = Util::getKey(command4, strlen(command4));
-	std::string key5 = Util::getKey(command5, strlen(command5));
-	std::string key6 = Util::getKey(command6, strlen(command6));
+	std::string key1 = RedisUtil::getKey(command1, strlen(command1));
+	std::string key2 = RedisUtil::getKey(command2, strlen(command2));
+	std::string key3 = RedisUtil::getKey(command3, strlen(command3));
+	std::string key4 = RedisUtil::getKey(command4, strlen(command4));
+	std::string key5 = RedisUtil::getKey(command5, strlen(command5));
+	std::string key6 = RedisUtil::getKey(command6, strlen(command6));
 }
 
 void test_getContext(const char* str)

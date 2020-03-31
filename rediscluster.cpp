@@ -1,5 +1,5 @@
 ﻿#include "rediscluster.h"
-#include "util.h"
+#include "redisutil.h"
 
 RedisCluster::RedisCluster()
 	:_repl(NULL)
@@ -101,8 +101,8 @@ RedisHome* RedisCluster::command(const char* command)
 	//2. calc hash value
 	//3. select the destination host
 	//4. process result
-	std::string key = Util::getKey(command, strlen(command));
-	unsigned int hashslot = Util::clusterManagerKeyHashSlot(key.c_str(), key.size());
+	std::string key = RedisUtil::getKey(command, strlen(command));
+	unsigned int hashslot = RedisUtil::clusterManagerKeyHashSlot(key.c_str(), key.size());
 	//找到数据存储所在实例
 	RedisHome* inst = getContext(hashslot);
 	if (!inst)

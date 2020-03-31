@@ -13,9 +13,6 @@
     <ClCompile Include="rediscluster.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="util.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="redisqueue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -23,6 +20,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="redissingle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="redisutil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -33,9 +33,6 @@
     <ClInclude Include="rediscluster.h">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="util.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="redisqueue.h">
       <Filter>源文件</Filter>
     </ClInclude>
@@ -43,6 +40,9 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="redissingle.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="redisutil.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

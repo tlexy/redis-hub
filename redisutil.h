@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <string>
 
-class Util
+class RedisUtil
 {
 public:
 	static uint16_t crc16(const char *buf, int len);

@@ -1,4 +1,4 @@
-﻿#include "util.h"
+﻿#include "redisutil.h"
 
 static const uint16_t crc16tab[256] = {
 	0x0000,0x1021,0x2042,0x3063,0x4084,0x50a5,0x60c6,0x70e7,
@@ -35,7 +35,7 @@ static const uint16_t crc16tab[256] = {
 	0x6e17,0x7e36,0x4e55,0x5e74,0x2e93,0x3eb2,0x0ed1,0x1ef0
 };
 
-uint16_t Util::crc16(const char *buf, int len) 
+uint16_t RedisUtil::crc16(const char *buf, int len)
 {
 	int counter;
 	uint16_t crc = 0;
@@ -44,7 +44,7 @@ uint16_t Util::crc16(const char *buf, int len)
 	return crc;
 }
 
-unsigned int Util::clusterManagerKeyHashSlot(const char *key, int keylen)
+unsigned int RedisUtil::clusterManagerKeyHashSlot(const char *key, int keylen)
 {
 	int s, e; /* start-end indexes of { and } */
 
@@ -66,7 +66,7 @@ unsigned int Util::clusterManagerKeyHashSlot(const char *key, int keylen)
 	return crc16(key + s + 1, e - s - 1) & 0x3FFF;
 }
 
-std::string Util::getKey(const char* command, size_t len)
+std::string RedisUtil::getKey(const char* command, size_t len)
 {
 	char* temp = (char*)command;
 	size_t limit = 0;

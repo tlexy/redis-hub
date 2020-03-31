@@ -122,7 +122,7 @@
     <ClCompile Include="redishome.cpp" />
     <ClCompile Include="redisqueue.cpp" />
     <ClCompile Include="redissingle.cpp" />
-    <ClCompile Include="util.cpp" />
+    <ClCompile Include="redisutil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rediscluster.h" />
@@ -130,7 +130,7 @@
     <ClInclude Include="redisqueue.h" />
     <ClInclude Include="redissingle.h" />
     <ClInclude Include="threadqueue.hpp" />
-    <ClInclude Include="util.h" />
+    <ClInclude Include="redisutil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
