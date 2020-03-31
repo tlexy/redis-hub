@@ -19,6 +19,7 @@ redisContext* RedisHome::connect(const char* ipstr, int port, struct timeval tva
 	_ipstr.append(ipstr);
 	_port = port;
 	_tval = tval;
+
 	printf("connect to server: %s:%d\n", ipstr, port);
 	_ctx = redisConnectWithTimeout(ipstr, port, tval);
 	if (_ctx == NULL || _ctx->err)
@@ -176,7 +177,7 @@ bool RedisHome::next(std::string& key, std::string& val)
 	}
 	key = _str_result[_str_pos];
 	val = _str_result[_str_pos + 1];
-	++_str_pos;
+	_str_pos += 2;
 	return true;
 }
 
